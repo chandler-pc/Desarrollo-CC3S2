@@ -35,9 +35,10 @@ Es una convención en las solicitudes HTTP que la URL completa no se repita cuan
 ***Pregunta:*** 
 Según los encabezados del servidor, ¿cuál es el código de respuesta HTTP del servidor que indica el estado de la solicitud del cliente y qué versión del protocolo HTTP utilizó el servidor para responder al cliente?
 
-![](https://github.com/chandler-pc/Desarrollo-CC3S2/blob/main/Http-Uri/images/Aspose.Words.0ac7ce18-8902-4c35-af50-35507bcea07a.012.png)El código de respuesta es el 200, y la versión del protocolo es HTTP/1.1
+![](https://github.com/chandler-pc/Desarrollo-CC3S2/blob/main/Http-Uri/images/Aspose.Words.0ac7ce18-8902-4c35-af50-35507bcea07a.012.png)
+El código de respuesta es el 200, y la versión del protocolo es HTTP/1.1
 
-***Pregunta:*** 
+***Pregunta:***
 Cualquier solicitud web determinada puede devolver una página HTML, una imagen u otros tipos de entidades. ¿Hay algo en los encabezados que crea que le dice al cliente cómo interpretar el resultado?
 
 Si el Content-type, que me dice el tipo de formato que me devuelve que en este caso es HTML, y también indica la codificación de caracteres utilizada para el contenido, aqui, se especifica utf-8.
@@ -53,44 +54,33 @@ Si el Content-type, que me dice el tipo de formato que me devuelve que en este c
 
 En la página <https://http.cat/> nos da todo los tipos de códigos de respuesta a las solicitudes HTTP
 
-![](https://github.com/chandler-pc/Desarrollo-CC3S2/blob/main/Http-Uri/images/Aspose.Words.0ac7ce18-8902-4c35-af50-35507bcea07a.015.png)
 ***200:***
-
-
-***Pregunta:***
-Tanto el encabezado 4xx como el 5xx indican condiciones de error. ¿Cuál es la principal diferencia entre 4xx y 5xx?
+![](https://github.com/chandler-pc/Desarrollo-CC3S2/blob/main/Http-Uri/images/Aspose.Words.0ac7ce18-8902-4c35-af50-35507bcea07a.015.png)
 El código de estado HTTP 200 OK, que denota éxito, señala que la solicitud fue exitosa.
 
 ***301:*** 
 ![](https://github.com/chandler-pc/Desarrollo-CC3S2/blob/main/Http-Uri/images/Aspose.Words.0ac7ce18-8902-4c35-af50-35507bcea07a.017.png)
-
 Indica que el recurso solicitado se ha movido definitivamente a la URL proporcionada por los encabezados de Ubicación.
 
 ***302:***
 
-![](https://github.com/chandler-pc/Desarrollo-CC3S2/blob/main/Http-Uri/images/Aspose.Words.0ac7ce18-8902-4c35-af50-35507bcea07a.018.png)Indica que el recurso solicitado se ha movido temporalmente a la URL proporcionada por el encabezado Ubicación.
+![](https://github.com/chandler-pc/Desarrollo-CC3S2/blob/main/Http-Uri/images/Aspose.Words.0ac7ce18-8902-4c35-af50-35507bcea07a.018.png)
+Indica que el recurso solicitado se ha movido temporalmente a la URL proporcionada por el encabezado Ubicación.
 
 ***400:***
-
 ![](https://github.com/chandler-pc/Desarrollo-CC3S2/blob/main/Http-Uri/images/Aspose.Words.0ac7ce18-8902-4c35-af50-35507bcea07a.019.png)
-
 Indica que el servidor no puede o no procesará la solicitud debido a algo que se percibe como un error del cliente
 
 ***404:*** 
-
 ![](https://github.com/chandler-pc/Desarrollo-CC3S2/blob/main/Http-Uri/images/Aspose.Words.0ac7ce18-8902-4c35-af50-35507bcea07a.020.png)
-
 Indica que el servidor no puede encontrar el recurso solicitado.
 
 ***500:***
-
 ![](https://github.com/chandler-pc/Desarrollo-CC3S2/blob/main/Http-Uri/images/Aspose.Words.0ac7ce18-8902-4c35-af50-35507bcea07a.021.png)
-
 Internal Server Error indica que el servidor encontró una condición inesperada que le impidió cumplir con la solicitud.
 
 ***Pregunta:***
 Tanto el encabezado 4xx como el 5xx indican condiciones de error. ¿Cuál es la principal diferencia entre 4xx y 5xx?
-
 Los 4xx son errores por parte del cliente, y los 5xx por parte del servidor.
 
 ***Pregunta:***
