@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     ffi (1.16.2)
+    ffi (1.16.2-x64-mingw-ucrt)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -27,6 +28,7 @@ GEM
     tilt (2.3.0)
 
 PLATFORMS
+  x64-mingw-ucrt
   x86_64-linux
 
 DEPENDENCIES
@@ -35,7 +37,7 @@ DEPENDENCIES
   sinatra (>= 2.0.1)
 
 RUBY VERSION
-   ruby 3.0.2p107
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.4.20
