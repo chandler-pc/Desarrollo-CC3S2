@@ -1,1 +1,0 @@
-En este repositorio se encuentra la primera parte de la PC, la cual es 
