@@ -18,11 +18,6 @@ more_movies = [
     :release_date => '12-Jun-1981'}
 ]
 
-more_moviegoers = [
-{:id => 1, :name => 'Alice'},
-{:id => 2, :name => 'Bob'}
-]
-
 more_movies.each do |movie|
   Movie.create(movie)
 end

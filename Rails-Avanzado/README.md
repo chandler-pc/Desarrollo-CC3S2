@@ -39,6 +39,55 @@ end
 
 Para luego usar rails db:migrate y finalmente tendremos la tabla.
 
+Explicaremos este codigo
+
+```ruby
+class MoviesController < ApplicationController
+  def new
+    @movie = Movie.new
+  end 
+  def create
+    if (@movie = Movie.create(movie_params))
+      redirect_to movies_path, :notice => "#{@movie.title} created."
+    else
+      flash[:alert] = "Movie #{@movie.title} could not be created: " +
+        @movie.errors.full_messages.join(",")
+      render 'new'
+    end
+  end
+  def edit
+    @movie = Movie.find params[:id]
+  end
+  def update
+    @movie = Movie.find params[:id]
+    if (@movie.update_attributes(movie_params))
+      redirect_to movie_path(@movie), :notice => "#{@movie.title} updated."
+    else
+      flash[:alert] = "#{@movie.title} could not be updated: " +
+        @movie.errors.full_messages.join(",")
+      render 'edit'
+    end
+  end
+  def destroy
+    @movie = Movie.find(params[:id])
+    @movie.destroy
+    redirect_to movies_path, :notice => "#{@movie.title} deleted."
+  end
+  private
+  def movie_params
+    params.require(:movie)
+    params[:movie].permit(:title,:rating,:release_date)
+  end
+end
+```
+Este codigo es el controlador de las peliculas, maneja las funciones CRUD para nuestro modelo Movie
+* new : Aqui creamos una nueva instancia de la clase Movie,
+* create : Con esto manejamos la creacion de una pelicula con los datos mandados desde un formulario, si la creacion es exitosa entonces da un mensaje de exito y redirige a la lista de peliculas, de lo contrario da un mensaje de error y vuelvo al formulario de creacion.
+* edit : Aqui editamos la informacion de una pelicula, buscandola a traves de un id.
+* update : Este metodo maneja la actualizacion de una pelicula que ya existe, si la actualiza exitosamente entonces redirige a la pagina de informacion de la pelicula, si falla nos redirige a la pagina de edicion.
+* destroy : Con esto podemos manejar la destruccion de una pelicula por medio de su id.
+* movie_params : Lo usamos para gestionar los parametros que podemos enviar a traves de nuestras peticiones.
+
 # SSO
 
 Copiamos el siguiente codigo en el archivo routes.rb
@@ -106,3 +155,21 @@ end
 ```
 
 Ahora copiamos has_many :reviews a las clases Movie y Moviegoer.
+
+Probamos los comandos en la consola interativa de Rails  
+
+Creamos los moviegoers y buscamos la pelicula de muestra.  
+![](images/Image2.png)
+
+Creamos las review y las ponemos en OWO
+
+![](images/Image3.png)
+
+Ahora guardamos las reviews en la lista de cada moviegoer
+
+![](images/Image4.png)
+
+Ahora podemos hacer un map para ver los nombres de los moviegoers de cada review
+
+![](images/Image5.png)
+

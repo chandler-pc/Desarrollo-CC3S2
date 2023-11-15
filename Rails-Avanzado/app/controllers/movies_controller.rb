@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
   end
   def update
     @movie = Movie.find params[:id]
-    if (@movie.update_attributes(movie_params))
+    if @movie.update(movie_params)
       redirect_to movie_path(@movie), :notice => "#{@movie.title} updated."
     else
       flash[:alert] = "#{@movie.title} could not be updated: " +
@@ -43,4 +43,3 @@ class MoviesController < ApplicationController
     params[:movie].permit(:title,:rating,:release_date)
   end
 end
-

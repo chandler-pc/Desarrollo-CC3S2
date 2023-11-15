@@ -1,4 +1,3 @@
-require 'omniauth'
 Myrottenpotatoes::Application.routes.draw do
   resources :movies
   root :to => redirect('/movies')
@@ -6,4 +5,6 @@ Myrottenpotatoes::Application.routes.draw do
   get  'auth/failure' => 'sessions#failure'
   get  'auth/twitter', :as => 'login'
   post 'logout' => 'sessions#destroy'
+  put "movies/:id" => "movies#update"
 end
+
