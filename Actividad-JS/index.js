@@ -1,14 +1,14 @@
-console.log(undefined == null)
-console.log(NaN == NaN)
-console.log(null == false)
-console.log(0 == false)
-console.log("" == false)
+console.log(undefined == null) //true
+console.log(NaN == NaN) //false
+console.log(null == false) //false
+console.log(0 == false) //true
+console.log("" == false) //true
 
-console.log([1, 2, 3] + [4, 5, 6])
-console.log(!![])
-console.log([] == true)
-console.log([10,1,3].sort())
-console.log([] == 0)
+console.log([1, 2, 3] + [4, 5, 6]) //1,2,34,5,6
+console.log(!![]) //true
+console.log([] == true) //false
+console.log([10,1,3].sort()) //1,10,3
+console.log([] == 0) //true
 
 function f1(x) {
     var baz = 3;
@@ -17,7 +17,8 @@ function f1(x) {
     }
 }
 var bar = f1(5);
-bar(11);
+bar(11); //19
+bar(11); //20
 
 function greatestNumber(array) {
     for (let i of array) {
@@ -32,7 +33,7 @@ function greatestNumber(array) {
       }
     }
 }
-console.log(greatestNumber([1,2,3,4,5,6,7,8,9,10]));
+console.log(greatestNumber([1,2,3,4,5,6,7,8,9,10])); //10
 
 function containsX(string) {
     foundX = false;
@@ -43,8 +44,8 @@ function containsX(string) {
     }
     return foundX;
 }
-console.log(containsX("Hello World"));
-console.log(containsX("Hello WorldX"));
+console.log(containsX("Hello World")); //false
+console.log(containsX("Hello WorldX")); //true
 
 function findFirstNotDuplicate(word) {
     let hash = {};
@@ -61,4 +62,45 @@ function findFirstNotDuplicate(word) {
       }
     }
 }
-console.log(findFirstNotDuplicate("HHello World"));
+console.log(findFirstNotDuplicate("HHello World")); //e
+
+class Pokemon {
+    constructor(hp, attack, defense) {
+      this.hp = hp;
+      this.attack = attack;
+      this.defense = defense;
+      this.movement = "";
+      this.level = 1;
+      this.type = "";
+    }
+    fight(){
+      if(this.move == ""){
+        throw "No move selected";
+      }
+    }
+    canFly(){
+      if(this.type == ""){
+        throw "No type selected";
+      }
+      if(this.type == "Flying"){
+        return true;
+      }
+      return false;
+    }
+}
+
+class Charizard extends Pokemon {
+  constructor(hp, attack, defense,movement) {
+    super(hp, attack, defense);
+    this.move = "Shoot";
+    this.type = "Flying";
+  }
+  fight(){
+    if(this.move == ""){
+      throw "No move selected";
+    }
+    return "Charizard used " + this.move;
+  }
+}
+let charizard = new Charizard(100, 50, 30);
+console.log(charizard.fight()); //Charizard used Shoot
