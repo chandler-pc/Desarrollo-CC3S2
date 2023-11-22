@@ -1,0 +1,2 @@
+W, [2023-11-22T14:38:10.544613 #5362]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+I, [2023-11-22T14:38:10.589906 #5362]  INFO -- : Migrating to CreateMovies (20231003234846)
