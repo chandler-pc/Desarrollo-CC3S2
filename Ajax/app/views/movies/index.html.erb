@@ -1,7 +1,7 @@
 <h1>All Movies</h1>
 
 <%= link_to 'Add Movie', new_movie_path, :class => 'btn btn-primary' %>
-
+<%= stylesheet_link_tag 'application' %>
 <div id="movies">
   <div class="row">
     <div class="col-8">Movie Title</div>
@@ -16,4 +16,5 @@
     </div>
   <% end %>
 </div>
+<%= javascript_include_tag 'show_movie' %>
 
