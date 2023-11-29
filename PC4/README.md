@@ -292,3 +292,124 @@ const currentDay = new CurrentDay(Date, new MonthlySchedule());
 const dateProvider = { today: () => new Date(2020, 12, 16) };
 const testCurrentDay = new CurrentDay(dateProvider, new MonthlySchedule());
 ```
+
+# Pregunta 4
+
+Para el inciso 'a' nos piden que a cada fila le pongamos su número, esto lo podemos hacer fácilmente modificando el archivo index.html.erb y agregandole una columna de donde pondremos el número de fila, en este caso también crearemos una variable i que será el número de fila mostrado.
+```ruby
+<table class="table table-striped col-md-12" id="movies">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Movie Title</th>
+      <th>Rating</th>
+      <th>Release Date</th>
+      <th>More Info</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% i = 0%>
+    <% @movies.each do |movie| %>
+      <tr class="movie-row">
+        <td>
+          <%= i +=1 %>
+        </td>
+        <td>
+          <%= movie.title %>
+        </td>
+        <td>
+          <%= movie.rating %>
+        </td>
+        <td>
+          <%= movie.release_date %>
+        </td>
+        <td>
+          <%= link_to "More about #{movie.title}", movie_path(movie) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+```
+
+Para el inciso 'b' modificaremos la tabla para establecer la clase "movie-row" en las etiquetas tr `<tr class="movie-row">`, luego en el archivo application.css modificamos la propiedad 'hover' de la clase.
+También acotar que se utiliza `!important` para sobreescribir el atributo css de la clase table-striped y el color cambie correctamente.
+```css
+tr.movie-row:hover{
+    background-color: yellow !important;
+}
+```
+
+En el inciso 'c' y 'd' nos pide modificar el controlador para ordenar las películas por orden del alfabeto, esto lo podemos lograr actualizando usando unas simples líneas, para el caso 'c' haciendo uso de ActiveRecord y el sistema gestor de base de datos podemos usar `@movies = Movie.order(:title)` y para el inciso 'd' usando sort hacemos uso de `@movies = Movie.all.sort_by { |movie| movie.title }`
+
+```ruby
+def index
+  #@movies = Movie.order(:title)
+  @movies = Movie.all.sort_by { |movie| movie.title }
+end
+```
+
+Ahora como vemos en la imagen, la tabla tiene un número por cada fila, el fondo de la fila cambia al tener el mouse encima y la lista se muestra de forma alfabética, cabe aclarar que el mouse no se ve sobre la fila debido a la captura de pantalla.
+
+![](Pregunta4.png)
+
+# Pregunta 6
+
+En esta pregunta para el inciso 'a' creamos una función que almecene una contraseña y devuelva un objeto que tiene un método para verificar la contraseña inicial que establecimos para un usuario.
+```js
+function User(username, password) {
+    const _password = password;
+    return {
+        username: username,
+        checkPassword: function(inputPassword) {
+            return inputPassword === _password;
+        }
+    };
+}
+  
+const newUser = User('user', '54321');
+  
+console.log(newUser.checkPassword('54321'));
+console.log(newUser.checkPassword('12345'));
+```
+
+En el inciso 'b' podemos hacer uso de la función validate proporcionada por JQuery, en el archivo new.html.erb agregamos el script necesario que va a ejecutarse al momento de hacer un submit al formulario.
+```ruby
+<h2>Create New Movie</h2>
+<script>
+$(document).ready(function () {
+    $("#form-movie").validate({
+        rules: {
+            title: {
+                required: true,
+                minlength: 2,
+                maxlength: 50
+            }
+        },
+        messages: {
+            title: {
+                required: "Please enter a title",
+                minlength: "Title must be at least 2 characters long",
+                maxlength: "Title must be less than 50 characters long"
+            }
+        },
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+});
+</script>
+<%= form_tag movies_path, :class => 'form', :id => 'form-movie' do %>
+  <%= label :movie, :title, 'Title', :class => 'col-form-label' %>
+  <%= text_field :movie, :title, :class => 'form-control' %>
+
+  <%= label :movie, :rating, 'Rating', :class => 'col-form-label'  %>
+  <%= select :movie, :rating, ['G','PG','PG-13','R','NC-17'], {}, {:class => 'form-control col-1'} %>
+
+  <%= label :movie, :release_date, 'Released On', :class => 'col-form-label'  %>
+  <%= date_select :movie, :release_date, {}, :class => 'form-control col-2 d-inline' %>
+  <br/>
+  <input type="submit" name="commit" value="Create Movie" class="btn btn-primary" data-disable-with="Create Movie">
+  <%= link_to 'Back to Movies', movies_path, :class => 'btn btn-secondary' %>
+<% end %>
+```
