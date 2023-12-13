@@ -1,6 +1,9 @@
 # Parte 1
 
 ## Item 1
+Podemos usar este mismo repositorio para esto.
+Primero crearemos una nueva rama y hacemos cambios en este mismo readme.
+
 ## Item 2
 Si tenemos una instancia de User que no tiene un nombre de usuario, al llamar a @user.valid? nos dará false, ya que al usar :presence => true le estamos diciendo que ese campo es necesario para que el objeto User sea válido.
 
