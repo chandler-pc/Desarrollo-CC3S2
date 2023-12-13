@@ -1,8 +1,11 @@
 # Parte 1
-CAMBIO EN MAIN
 ## Item 1
 Podemos usar este mismo repositorio para esto.
 Primero crearemos una nueva rama y hacemos cambios en este mismo readme.
+Luego, cambiaremos el mismo archivo en el main, y haremos merge editando el archivo en conflicto
+![](Parte1/images/6.png)
+
+El error Non-fast-forward significa que hay cambios en el repositorio remoto que no tienes en tu repositorio local. Se arregla haciendo un pull.
 
 ## Item 2
 Si tenemos una instancia de User que no tiene un nombre de usuario, al llamar a @user.valid? nos dará false, ya que al usar :presence => true le estamos diciendo que ese campo es necesario para que el objeto User sea válido.
