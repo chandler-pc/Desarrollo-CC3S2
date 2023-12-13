@@ -1,0 +1,901 @@
+
+
+Started GET "/" for ::1 at 2023-12-13 12:56:06 +0000
+
+
+Started GET "/movies" for ::1 at 2023-12-13 12:56:06 +0000
+Processing by MoviesController#index as HTML
+Redirected to http://localhost:3000/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort_by=id
+Filter chain halted as :force_index_redirect rendered or redirected
+Completed 302 Found in 118ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort_by=id" for ::1 at 2023-12-13 12:56:07 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}, "sort_by"=>"id"}
+  [1m[36mMovie Load (16.4ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'PG', 'PG-13', 'R')  ORDER BY id[0m
+  Rendered movies/index.html.erb within layouts/application (55.0ms)
+Completed 500 Internal Server Error in 145ms (ActiveRecord: 27.5ms)
+
+ActionView::Template::Error (SQLite3::SQLException: no such table: movies: SELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'PG', 'PG-13', 'R')  ORDER BY id):
+    39:     </tr>
+    40:   </thead>
+    41:   <tbody>
+    42:     <% @movies.each do |movie| %>
+    43:       <tr>
+    44:         <td>
+    45:           <%= movie.title %>
+  app/views/movies/index.html.erb:42:in `_app_views_movies_index_html_erb__658221208084674536_70067329368340'
+
+
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.0ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (10.0ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.1ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (40.7ms)
+  [1m[36m (10.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (8.3ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateMovies (20111119180638)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in up at /home/devasc/Documents/Final/Parte 2/db/migrate/20111119180638_create_movies.rb:10)
+  [1m[35m (0.3ms)[0m  CREATE TABLE "movies" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "rating" varchar, "description" text, "release_date" datetime, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20111119180638"]]
+  [1m[35m (10.2ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "movies" ("title", "rating", "release_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Aladdin"], ["rating", "G"], ["release_date", "1992-11-25 00:00:00.000000"], ["created_at", "2023-12-13 12:59:31.705514"], ["updated_at", "2023-12-13 12:59:31.705514"]]
+  [1m[35m (9.2ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "movies" ("title", "rating", "release_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "The Terminator"], ["rating", "R"], ["release_date", "1984-10-26 00:00:00.000000"], ["created_at", "2023-12-13 12:59:31.716371"], ["updated_at", "2023-12-13 12:59:31.716371"]]
+  [1m[36m (6.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "movies" ("title", "rating", "release_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "When Harry Met Sally"], ["rating", "R"], ["release_date", "1989-07-21 00:00:00.000000"], ["created_at", "2023-12-13 12:59:31.724031"], ["updated_at", "2023-12-13 12:59:31.724031"]]
+  [1m[35m (6.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "movies" ("title", "rating", "release_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "The Help"], ["rating", "PG-13"], ["release_date", "2011-08-10 00:00:00.000000"], ["created_at", "2023-12-13 12:59:31.731662"], ["updated_at", "2023-12-13 12:59:31.731662"]]
+  [1m[36m (6.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "movies" ("title", "rating", "release_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Chocolat"], ["rating", "PG-13"], ["release_date", "2001-01-05 00:00:00.000000"], ["created_at", "2023-12-13 12:59:31.739283"], ["updated_at", "2023-12-13 12:59:31.739283"]]
+  [1m[35m (6.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "movies" ("title", "rating", "release_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "Amelie"], ["rating", "R"], ["release_date", "2001-04-25 00:00:00.000000"], ["created_at", "2023-12-13 12:59:31.747418"], ["updated_at", "2023-12-13 12:59:31.747418"]]
+  [1m[36m (6.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "movies" ("title", "rating", "release_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "2001: A Space Odyssey"], ["rating", "G"], ["release_date", "1968-04-06 00:00:00.000000"], ["created_at", "2023-12-13 12:59:31.755086"], ["updated_at", "2023-12-13 12:59:31.755086"]]
+  [1m[35m (6.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "movies" ("title", "rating", "release_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "The Incredibles"], ["rating", "PG"], ["release_date", "2004-11-05 00:00:00.000000"], ["created_at", "2023-12-13 12:59:31.762829"], ["updated_at", "2023-12-13 12:59:31.762829"]]
+  [1m[36m (8.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "movies" ("title", "rating", "release_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Raiders of the Lost Ark"], ["rating", "PG"], ["release_date", "1981-06-12 00:00:00.000000"], ["created_at", "2023-12-13 12:59:31.772738"], ["updated_at", "2023-12-13 12:59:31.772738"]]
+  [1m[35m (6.9ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "movies" ("title", "rating", "release_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "Chicken Run"], ["rating", "G"], ["release_date", "2000-06-21 00:00:00.000000"], ["created_at", "2023-12-13 12:59:31.780975"], ["updated_at", "2023-12-13 12:59:31.780975"]]
+  [1m[36m (6.7ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort_by=id" for ::1 at 2023-12-13 12:59:39 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}, "sort_by"=>"id"}
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'PG', 'PG-13', 'R')  ORDER BY id[0m
+  Rendered movies/index.html.erb within layouts/application (49.6ms)
+  Rendered layouts/_flash.erb (0.4ms)
+Completed 200 OK in 765ms (Views: 732.6ms | ActiveRecord: 7.6ms)
+
+
+Started GET "/assets/application.self-021ca269f52f282e3a94c3868170f31d36c5e40ed7da2ff9b2a8c3fd3165d8f8.css?body=1" for ::1 at 2023-12-13 12:59:40 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2023-12-13 12:59:40 +0000
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for ::1 at 2023-12-13 12:59:40 +0000
+
+
+Started GET "/assets/jquery_ujs.self-a6375ab2b275439c922ac52b02a475d288976458aa11a6e8103c925ef2961f66.js?body=1" for ::1 at 2023-12-13 12:59:40 +0000
+DEPRECATION WARNING: Defining a route where `to` is a controller without an action is deprecated. Please change `to: 'search_controller'` to `controller: 'search_controller'`. (called from block in <top (required)> at /home/devasc/Documents/Final/Parte 2/config/routes.rb:5)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort_by=id" for ::1 at 2023-12-13 13:13:43 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}, "sort_by"=>"id"}
+  [1m[36mMovie Load (0.4ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'PG', 'PG-13', 'R')  ORDER BY id[0m
+  Rendered movies/index.html.erb within layouts/application (27.5ms)
+  Rendered layouts/_flash.erb (0.4ms)
+Completed 200 OK in 648ms (Views: 602.6ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/assets/search_controller.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2023-12-13 13:13:43 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2023-12-13 13:13:43 +0000
+
+
+Started GET "/assets/search_controller.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2023-12-13 13:13:43 +0000
+
+
+Started GET "/assets/jquery_ujs.self-a6375ab2b275439c922ac52b02a475d288976458aa11a6e8103c925ef2961f66.js?body=1" for ::1 at 2023-12-13 13:13:43 +0000
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for ::1 at 2023-12-13 13:13:43 +0000
+
+
+Started GET "/assets/application.self-021ca269f52f282e3a94c3868170f31d36c5e40ed7da2ff9b2a8c3fd3165d8f8.css?body=1" for ::1 at 2023-12-13 13:13:43 +0000
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:13:55 +0000
+Processing by SearchControllerController#show as HTML
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms)
+
+ActionView::MissingTemplate (Missing template search_controller/show, application/show with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/devasc/Documents/Final/Parte 2/app/views"
+):
+  actionview (4.2.11) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.11) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.11) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.11) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.11) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.11) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.11) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/benchmark.rb:308:in `realtime'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.11) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.11) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.11) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.13) lib/rack/etag.rb:24:in `call'
+  rack (1.6.13) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.13) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:252:in `context'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:247:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.11) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.11) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (3.3.0) lib/web_console/middleware.rb:131:in `call_app'
+  web-console (3.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (3.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/httpserver.rb:140:in `service'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/httpserver.rb:96:in `run'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/server.rb:307:in `block in start_thread'
+
+
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.0ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (17.5ms)
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:14:54 +0000
+Processing by SearchControllerController#show as HTML
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+ActionView::MissingTemplate (Missing template search_controller/show, application/show with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/devasc/Documents/Final/Parte 2/app/views"
+):
+  actionview (4.2.11) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.11) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.11) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.11) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.11) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.11) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.11) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/benchmark.rb:308:in `realtime'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.11) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.11) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.11) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.13) lib/rack/etag.rb:24:in `call'
+  rack (1.6.13) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.13) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:252:in `context'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:247:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.11) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.11) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (3.3.0) lib/web_console/middleware.rb:131:in `call_app'
+  web-console (3.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (3.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/httpserver.rb:140:in `service'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/httpserver.rb:96:in `run'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/server.rb:307:in `block in start_thread'
+
+
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.9ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (6.5ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (24.3ms)
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:16:57 +0000
+
+AbstractController::ActionNotFound (The action 'search_tmdb' could not be found for SearchControllerController):
+  actionpack (4.2.11) lib/abstract_controller/base.rb:132:in `process'
+  actionview (4.2.11) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.11) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.13) lib/rack/etag.rb:24:in `call'
+  rack (1.6.13) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.13) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:252:in `context'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:247:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.11) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.11) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (3.3.0) lib/web_console/middleware.rb:131:in `call_app'
+  web-console (3.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (3.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/httpserver.rb:140:in `service'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/httpserver.rb:96:in `run'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/server.rb:307:in `block in start_thread'
+
+
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/unknown_action.html.erb within rescues/layout (1.3ms)
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:17:17 +0000
+Processing by SearchControllerController#search_tmdb as HTML
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+ActionView::MissingTemplate (Missing template search_controller/search_tmdb, application/search_tmdb with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby]}. Searched in:
+  * "/home/devasc/Documents/Final/Parte 2/app/views"
+):
+  actionview (4.2.11) lib/action_view/path_set.rb:46:in `find'
+  actionview (4.2.11) lib/action_view/lookup_context.rb:121:in `find'
+  actionview (4.2.11) lib/action_view/renderer/abstract_renderer.rb:18:in `find_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:40:in `determine_template'
+  actionview (4.2.11) lib/action_view/renderer/template_renderer.rb:8:in `render'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:46:in `render_template'
+  actionview (4.2.11) lib/action_view/renderer/renderer.rb:27:in `render'
+  actionview (4.2.11) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.11) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.11) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.11) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.11) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/benchmark.rb:308:in `realtime'
+  activesupport (4.2.11) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.11) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.11) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.11) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.11) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.11) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.11) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.11) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.11) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.11) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.11) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.13) lib/rack/etag.rb:24:in `call'
+  rack (1.6.13) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.13) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:252:in `context'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:247:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.11) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.11) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (3.3.0) lib/web_console/middleware.rb:131:in `call_app'
+  web-console (3.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (3.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/httpserver.rb:140:in `service'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/httpserver.rb:96:in `run'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/server.rb:307:in `block in start_thread'
+
+
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.8ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (15.6ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (35.4ms)
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:18:29 +0000
+
+ActionController::RoutingError (uninitialized constant MoviesControllerController):
+  activesupport (4.2.11) lib/active_support/inflector/methods.rb:261:in `const_get'
+  activesupport (4.2.11) lib/active_support/inflector/methods.rb:261:in `block in constantize'
+  activesupport (4.2.11) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.11) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.11) lib/active_support/inflector/methods.rb:259:in `constantize'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:70:in `controller_reference'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:60:in `controller'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:39:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.11) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.11) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.13) lib/rack/etag.rb:24:in `call'
+  rack (1.6.13) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.13) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:252:in `context'
+  rack (1.6.13) lib/rack/session/abstract/id.rb:247:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.11) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.11) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.11) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.11) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (3.3.0) lib/web_console/middleware.rb:131:in `call_app'
+  web-console (3.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (3.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (3.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.11) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.11) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.11) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.13) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.13) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.11) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.11) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.13) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.11) lib/rails/engine.rb:518:in `call'
+  railties (4.2.11) lib/rails/application.rb:165:in `call'
+  rack (1.6.13) lib/rack/lock.rb:17:in `call'
+  rack (1.6.13) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.13) lib/rack/handler/webrick.rb:88:in `service'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/httpserver.rb:140:in `service'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/httpserver.rb:96:in `run'
+  /usr/share/rvm/rubies/ruby-2.6.6/lib/ruby/2.6.0/webrick/server.rb:307:in `block in start_thread'
+
+
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.1ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/routes/_table.html.erb (21.9ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (14.4ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (92.0ms)
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:18:48 +0000
+Processing by MoviesController#search_tmdb as HTML
+  Rendered movies/search_tmdb.html.erb within layouts/application (5.4ms)
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 0.0ms)
+
+SyntaxError (/home/devasc/Documents/Final/Parte 2/app/views/movies/search_tmdb.html.erb:29: syntax error, unexpected ensure, expecting end-of-input
+          ensure
+          ^~~~~~):
+  app/views/movies/search_tmdb.html.erb:29: syntax error, unexpected ensure, expecting end-of-input
+
+
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.3ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (7.2ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (24.3ms)
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:19:55 +0000
+Processing by MoviesController#search_tmdb as HTML
+  Rendered movies/search_tmdb.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+SyntaxError (/home/devasc/Documents/Final/Parte 2/app/views/movies/search_tmdb.html.erb:29: syntax error, unexpected ensure, expecting end-of-input
+          ensure
+          ^~~~~~):
+  app/views/movies/search_tmdb.html.erb:29: syntax error, unexpected ensure, expecting end-of-input
+
+
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.9ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (9.9ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (46.9ms)
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:20:38 +0000
+Processing by MoviesController#search_tmdb as HTML
+  Rendered movies/search_tmdb.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.0ms)
+
+SyntaxError (/home/devasc/Documents/Final/Parte 2/app/views/movies/search_tmdb.html.erb:28: syntax error, unexpected ensure, expecting end-of-input
+          ensure
+          ^~~~~~):
+  app/views/movies/search_tmdb.html.erb:28: syntax error, unexpected ensure, expecting end-of-input
+
+
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_source.erb (10.0ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.5ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (8.9ms)
+  Rendered /usr/share/rvm/gems/ruby-2.6.6/gems/actionpack-4.2.11/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (52.9ms)
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:21:16 +0000
+Processing by MoviesController#search_tmdb as HTML
+  Rendered movies/search_tmdb.html.erb within layouts/application (8.7ms)
+  Rendered layouts/_flash.erb (0.7ms)
+Completed 200 OK in 402ms (Views: 401.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/search_controller.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2023-12-13 13:21:17 +0000
+
+
+Started GET "/assets/jquery_ujs.self-a6375ab2b275439c922ac52b02a475d288976458aa11a6e8103c925ef2961f66.js?body=1" for ::1 at 2023-12-13 13:21:17 +0000
+
+
+Started GET "/assets/application.self-021ca269f52f282e3a94c3868170f31d36c5e40ed7da2ff9b2a8c3fd3165d8f8.css?body=1" for ::1 at 2023-12-13 13:21:17 +0000
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for ::1 at 2023-12-13 13:21:17 +0000
+
+
+Started GET "/assets/search_controller.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2023-12-13 13:21:17 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2023-12-13 13:21:17 +0000
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:25:41 +0000
+Processing by MoviesController#search_tmdb as HTML
+  Rendered movies/search_tmdb.html.erb within layouts/application (2.4ms)
+  Rendered layouts/_flash.erb (0.4ms)
+Completed 200 OK in 215ms (Views: 213.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/search_controller.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2023-12-13 13:25:42 +0000
+
+
+Started GET "/assets/application.self-021ca269f52f282e3a94c3868170f31d36c5e40ed7da2ff9b2a8c3fd3165d8f8.css?body=1" for ::1 at 2023-12-13 13:25:42 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2023-12-13 13:25:42 +0000
+
+
+Started GET "/assets/search_controller.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2023-12-13 13:25:42 +0000
+
+
+Started GET "/assets/jquery_ujs.self-a6375ab2b275439c922ac52b02a475d288976458aa11a6e8103c925ef2961f66.js?body=1" for ::1 at 2023-12-13 13:25:42 +0000
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for ::1 at 2023-12-13 13:25:42 +0000
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:25:44 +0000
+Processing by MoviesController#search_tmdb as HTML
+  Rendered movies/search_tmdb.html.erb within layouts/application (0.4ms)
+  Rendered layouts/_flash.erb (0.1ms)
+Completed 200 OK in 64ms (Views: 64.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/search_controller.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2023-12-13 13:25:44 +0000
+
+
+Started GET "/assets/application.self-021ca269f52f282e3a94c3868170f31d36c5e40ed7da2ff9b2a8c3fd3165d8f8.css?body=1" for ::1 at 2023-12-13 13:25:44 +0000
+
+
+Started GET "/assets/jquery_ujs.self-a6375ab2b275439c922ac52b02a475d288976458aa11a6e8103c925ef2961f66.js?body=1" for ::1 at 2023-12-13 13:25:44 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2023-12-13 13:25:44 +0000
+
+
+Started GET "/assets/search_controller.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2023-12-13 13:25:44 +0000
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for ::1 at 2023-12-13 13:25:44 +0000
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:26:02 +0000
+Processing by MoviesController#search_tmdb as HTML
+  Rendered movies/search_tmdb.html.erb within layouts/application (1.9ms)
+  Rendered layouts/_flash.erb (1.0ms)
+Completed 200 OK in 229ms (Views: 228.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/search_controller.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2023-12-13 13:26:03 +0000
+
+
+Started GET "/assets/jquery_ujs.self-a6375ab2b275439c922ac52b02a475d288976458aa11a6e8103c925ef2961f66.js?body=1" for ::1 at 2023-12-13 13:26:03 +0000
+
+
+Started GET "/assets/application.self-021ca269f52f282e3a94c3868170f31d36c5e40ed7da2ff9b2a8c3fd3165d8f8.css?body=1" for ::1 at 2023-12-13 13:26:03 +0000
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for ::1 at 2023-12-13 13:26:03 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2023-12-13 13:26:03 +0000
+
+
+Started GET "/assets/search_controller.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2023-12-13 13:26:03 +0000
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:31:10 +0000
+Processing by MoviesController#search_tmdb as HTML
+  Rendered movies/search_tmdb.html.erb within layouts/application (4.4ms)
+  Rendered layouts/_flash.erb (0.4ms)
+Completed 200 OK in 317ms (Views: 315.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/search_controller.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2023-12-13 13:31:10 +0000
+
+
+Started GET "/assets/application.self-021ca269f52f282e3a94c3868170f31d36c5e40ed7da2ff9b2a8c3fd3165d8f8.css?body=1" for ::1 at 2023-12-13 13:31:10 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2023-12-13 13:31:10 +0000
+
+
+Started GET "/assets/jquery_ujs.self-a6375ab2b275439c922ac52b02a475d288976458aa11a6e8103c925ef2961f66.js?body=1" for ::1 at 2023-12-13 13:31:10 +0000
+
+
+Started GET "/assets/search_controller.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2023-12-13 13:31:11 +0000
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for ::1 at 2023-12-13 13:31:11 +0000
+
+
+Started GET "/" for ::1 at 2023-12-13 13:31:13 +0000
+
+
+Started GET "/movies" for ::1 at 2023-12-13 13:31:13 +0000
+Processing by MoviesController#index as HTML
+Redirected to http://localhost:3000/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort_by=id
+Filter chain halted as :force_index_redirect rendered or redirected
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort_by=id" for ::1 at 2023-12-13 13:31:13 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}, "sort_by"=>"id"}
+  [1m[36mMovie Load (0.2ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'PG', 'PG-13', 'R')  ORDER BY id[0m
+  Rendered movies/index.html.erb within layouts/application (23.9ms)
+  Rendered layouts/_flash.erb (0.1ms)
+Completed 200 OK in 103ms (Views: 36.8ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:32:01 +0000
+Processing by MoviesController#search_tmdb as HTML
+  Rendered movies/search_tmdb.html.erb within layouts/application (2.5ms)
+  Rendered layouts/_flash.erb (0.6ms)
+Completed 200 OK in 199ms (Views: 198.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/search_controller.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2023-12-13 13:32:01 +0000
+
+
+Started GET "/assets/application.self-021ca269f52f282e3a94c3868170f31d36c5e40ed7da2ff9b2a8c3fd3165d8f8.css?body=1" for ::1 at 2023-12-13 13:32:01 +0000
+
+
+Started GET "/assets/jquery_ujs.self-a6375ab2b275439c922ac52b02a475d288976458aa11a6e8103c925ef2961f66.js?body=1" for ::1 at 2023-12-13 13:32:01 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2023-12-13 13:32:01 +0000
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for ::1 at 2023-12-13 13:32:01 +0000
+
+
+Started GET "/assets/search_controller.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2023-12-13 13:32:01 +0000
+
+
+Started GET "/" for ::1 at 2023-12-13 13:32:03 +0000
+
+
+Started GET "/movies" for ::1 at 2023-12-13 13:32:03 +0000
+Processing by MoviesController#index as HTML
+Redirected to http://localhost:3000/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort_by=id
+Filter chain halted as :force_index_redirect rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort_by=id" for ::1 at 2023-12-13 13:32:03 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}, "sort_by"=>"id"}
+  [1m[36mMovie Load (0.1ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'PG', 'PG-13', 'R')  ORDER BY id[0m
+  Rendered movies/index.html.erb within layouts/application (19.8ms)
+  Rendered layouts/_flash.erb (0.1ms)
+Completed 200 OK in 75ms (Views: 42.8ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for ::1 at 2023-12-13 13:35:06 +0000
+
+
+Started GET "/movies" for ::1 at 2023-12-13 13:35:06 +0000
+Processing by MoviesController#index as HTML
+Redirected to http://localhost:3000/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort_by=id
+Filter chain halted as :force_index_redirect rendered or redirected
+Completed 302 Found in 10ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort_by=id" for ::1 at 2023-12-13 13:35:06 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}, "sort_by"=>"id"}
+  [1m[36mMovie Load (0.3ms)[0m  [1mSELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'PG', 'PG-13', 'R')  ORDER BY id[0m
+  Rendered movies/index.html.erb within layouts/application (41.2ms)
+  Rendered layouts/_flash.erb (0.6ms)
+Completed 200 OK in 426ms (Views: 391.2ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 13:35:08 +0000
+Processing by MoviesController#search_tmdb as HTML
+  Rendered movies/search_tmdb.html.erb within layouts/application (1.8ms)
+  Rendered layouts/_flash.erb (0.1ms)
+Completed 200 OK in 27ms (Views: 26.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2023-12-13 13:36:47 +0000
+
+
+Started GET "/movies" for ::1 at 2023-12-13 13:36:47 +0000
+Processing by MoviesController#index as HTML
+Redirected to http://localhost:3000/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort_by=id
+Filter chain halted as :force_index_redirect rendered or redirected
+Completed 302 Found in 5ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/movies?ratings%5BG%5D=1&ratings%5BPG%5D=1&ratings%5BPG-13%5D=1&ratings%5BR%5D=1&sort_by=id" for ::1 at 2023-12-13 13:36:47 +0000
+Processing by MoviesController#index as HTML
+  Parameters: {"ratings"=>{"G"=>"1", "PG"=>"1", "PG-13"=>"1", "R"=>"1"}, "sort_by"=>"id"}
+  [1m[35mMovie Load (0.4ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."rating" IN ('G', 'PG', 'PG-13', 'R')  ORDER BY id
+  Rendered movies/index.html.erb within layouts/application (5.2ms)
+  Rendered layouts/_flash.erb (0.1ms)
+Completed 200 OK in 41ms (Views: 36.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/search_tmdb" for ::1 at 2023-12-13 14:05:15 +0000
+Processing by MoviesController#search_tmdb as HTML
+  Rendered movies/search_tmdb.html.erb within layouts/application (4.3ms)
+  Rendered layouts/_flash.erb (0.6ms)
+Completed 200 OK in 275ms (Views: 274.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/search_controller.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2023-12-13 14:05:15 +0000
+
+
+Started GET "/assets/application.self-021ca269f52f282e3a94c3868170f31d36c5e40ed7da2ff9b2a8c3fd3165d8f8.css?body=1" for ::1 at 2023-12-13 14:05:15 +0000
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for ::1 at 2023-12-13 14:05:16 +0000
+
+
+Started GET "/assets/jquery_ujs.self-a6375ab2b275439c922ac52b02a475d288976458aa11a6e8103c925ef2961f66.js?body=1" for ::1 at 2023-12-13 14:05:16 +0000
+
+
+Started GET "/assets/search_controller.self-19a187bec6cdb96d6de80a61c16c857c613536adf9138476bd367db38d282635.js?body=1" for ::1 at 2023-12-13 14:05:16 +0000
+
+
+Started GET "/assets/application.self-377610cd7c1509e934744c810e3b4cf672dfbcacac3274e7d039827e2ae0fcc7.js?body=1" for ::1 at 2023-12-13 14:05:16 +0000

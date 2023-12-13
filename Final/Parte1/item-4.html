@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Item 4</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#onSubmit").click(function () {
+                let user = $(".user").val();
+                let pass = $(".pass").val();
+                if (user == "username" && pass == "password") {
+                    alert("Login correcto");
+                } else {
+                    alert("Login incorrecto");
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <form method="POST" id="foo">
+        <input type="text" class="user" />
+        <input type="password" class="pass" />
+        <input type="button" value="Log␣in" id="onSubmit" />
+    </form>
+</body>
+
+</html>
